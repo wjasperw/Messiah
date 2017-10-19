@@ -1,0 +1,303 @@
+GET 
+  FILE='K:\Messiah\TitleTest\Data\Prep\Ugam\C891_CUST_Messiah_US_Gen_General_Othr_completed_10_17_2017.sav'. 
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+
+*********************************************************************************************************
+                                    NEW RELIGIOSITY & POLITICAL WEIGHTS
+*********************************************************************************************************.
+***religD.
+
+If(Age4=1) ReligDWt=ReligD.
+If(Age4=2) ReligDWt=ReligD + 10.
+If(Age4=3) ReligDWt=ReligD + 20.
+If(Age4=4) ReligDWt=ReligD + 30.
+
+Val Labels ReligDWt 1 "18-24 Definitely"
+2 "18-24 Somewhat" 
+3 "18-24 Not Really" 
+4 "18-24 Not"
+11 "25-34 Definitely"
+12 "25-34 Somewhat"
+13 "25-34 Not Really"
+14 "25-34 Not"
+21 "35-49 Definitely"
+22 "35-49 Somewhat"
+23 "35-49 Not Really"
+24 "35-49 Not"
+31 "50-64 Definitely"
+32 "50-64 Somewhat"
+33 "50-64 Not Really"
+34 "50-64 Not".
+
+freq ReligD ReligDWt.
+
+RECODE ReligDWt (1=1)(11=2)(21=3)(31=4)(else=5) INTO ReligDWtB.
+val labels ReligDWtB 1 "18-24 Definitely" 2 "25-34 Definitely" 3 "35-49 Definitely" 4 "50-64 Definitely" 5 "Not Religious".
+freq ReligDWtB.
+
+freq religDwtB.
+
+***religC.
+
+If(Age4=1) ReligCWt=ReligC.
+If(Age4=2) ReligCWt=ReligC + 10.
+If(Age4=3) ReligCWt=ReligC + 20.
+If(Age4=4) ReligCWt=ReligC + 30.
+
+Val Labels ReligCWt 1 18-24 Within the past 7 days
+2 18-24 More than 7 days ago, but within the past month
+3 18-24 More than one month ago, but within the past 6 months
+4 18-24 More than 6 months ago, but within the past year
+5 18-24 More than 1 year ago
+6 18-24 I have never attended church, except for a holiday service or special event
+7 18-24 I have never attended church
+8 18-24 Prefer not to answer
+11 25-34 Within the past 7 days
+12 25-34 More than 7 days ago, but within the past month
+13 25-34 More than one month ago, but within the past 6 months
+14 25-34 More than 6 months ago, but within the past year
+15 25-34 More than 1 year ago
+16 25-34 I have never attended church, except for a holiday service or special event
+17 25-34 I have never attended church
+18 25-34 Prefer not to answer
+21 35-49 Within the past 7 days
+22 35-49 More than 7 days ago, but within the past month
+23 35-49 More than one month ago, but within the past 6 months
+24 35-49 More than 6 months ago, but within the past year
+25 35-49 More than 1 year ago
+26 35-49 I have never attended church, except for a holiday service or special event
+27 35-49 I have never attended church
+28 35-49 Prefer not to answer
+31 50-64 Within the past 7 days
+32 50-64 More than 7 days ago, but within the past month
+33 50-64 More than one month ago, but within the past 6 months
+34 50-64 More than 6 months ago, but within the past year
+35 50-64 More than 1 year ago
+36 50-64 I have never attended church, except for a holiday service or special event
+37 50-64 I have never attended church
+38 50-64 Prefer not to answer
+
+freq religCwt.
+
+RECODE ReligCWt (1,2=1)(11,12=2)(21.22=3)(31,32=4)(else=5) INTO ReligCWtB.
+val labels ReligCWtB 1 "18-24 Less than one month ago" 
+2 "25-34 Less than one month ago" 
+3 "35-49 Less than one month ago" 
+4 "50-64 Less than one month ago" 
+5 "More than one month ago".
+freq ReligCWtB.
+
+***religA.
+
+freq religA.
+
+Recode ReligA(4=1)(else=2) into Christian.
+Val Label Christian 1 "Christian" 2 "Not".
+Freq Christian.
+
+
+Recode ReligA(1=1)(else=2) into Agnostic.
+Val Label Agnostic 1 "Agnostic" 2 "Not".
+Freq Agnostic.
+
+If(Age4=1) ReligAWt=ReligA.
+If(Age4=2) ReligAWt=ReligA + 10.
+If(Age4=3) ReligAWt=ReligA + 20.
+If(Age4=4) ReligAWt=ReligA + 30.
+
+Val Labels ReligAWt 1 18-24 Agnostic
+2 18-24 Atheist
+3 18-24 Buddhist
+4 18-24 Christian
+5 18-24 Hindu
+6 18-24 Jewish
+7 18-24 Muslim
+8 18-24 Other faith
+9 18-24 Prefer not to answer
+11 25-34 Agnostic
+12 25-34 Atheist
+13 25-34 Buddhist
+14 25-34 Christian
+15 25-34 Hindu
+16 25-34 Jewish
+17 25-34 Muslim
+18 25-34 Other faith
+19 25-34 Prefer not to answer
+21 35-49 Agnostic
+22 35-49 Atheist
+23 35-49 Buddhist
+24 35-49 Christian
+25 35-49 Hindu
+26 35-49 Jewish
+27 35-49 Muslim
+28 35-49 Other faith
+29 35-49 Prefer not to answer
+31 50-64 Agnostic
+32 50-64 Atheist
+33 50-64 Buddhist
+34 50-64 Christian
+35 50-64 Hindu
+36 50-64 Jewish
+37 50-64 Muslim
+38 50-64 Other faith
+39 50-64 Prefer not to answer
+
+RECODE ReligAWt (4=1)(14=2)(24=3)(34=4)(else=5) INTO ReligAWtCH.
+val labels ReligAWtCH 1 "18-24 Christian" 2 "25-34 Christian" 3 "35-49 Christian" 4 "50-64 Christian" 5 "Not Christian".
+freq ReligAWtCH.
+
+RECODE ReligAWt (1=1)(11=2)(21=3)(31=4)(else=5) INTO ReligAWtAG.
+val labels ReligAWtAG 1 "18-24 Agnostic" 2 "25-34 Agnostic" 3 "35-49 Agnostic" 4 "50-64 Agnostic" 5 "Not Agnostic".
+freq ReligAWtAG.
+
+***PoliticalType.
+
+freq PoliticalType.
+Recode PoliticalType(1=1)(else=2) into Conservative.
+Val Label Conservative 1 "Conservative" 2 "Not".
+Freq Conservative.
+
+Recode PoliticalType(3=1)(else=2) into Liberal.
+Val Label Liberal 1 "Liberal" 2 "Not".
+Freq Liberal.
+
+recode PoliticalType (1=1) (2=2) (3=3) (4=4) (else=5) into PoliticalTypeB.
+freq politicaltypeb.
+
+If(Age4=1) PoliticalTypeWt=PoliticalTypeB.
+If(Age4=2) PoliticalTypeWt=PoliticalTypeB + 10.
+If(Age4=3) PoliticalTypeWt=PoliticalTypeB + 20.
+If(Age4=4) PoliticalTypeWt=PoliticalTypeB + 30.
+
+Val Labels PoliticalTypeWt 1 18-24 Conservative
+2 18-24 Moderate
+3 18-24 Liberal
+4 18-24 Prefer not to answer
+5 18-24 Not Political
+11 25-34 Conservative
+12 25-34 Moderate
+13 25-34 Liberal
+14 25-34 Prefer not to answer
+15 25-34 Not Political
+21 35-49 Conservative
+22 35-49 Moderate
+23 35-49 Liberal
+24 35-49 Prefer not to answer
+25 35-49 Not Political
+31 50-64 Conservative
+32 50-64 Moderate
+33 50-64 Liberal
+34 50-64 Prefer not to answer
+35 50-64 Not Political
+
+RECODE  PoliticalTypeWt (1=1)(11=2)(21=3)(31=4)(else=5) INTO  PolTypeWtCO.
+val labels PolTypeWtCO 1 "18-24 Conservative" 2 "25-34 Conservative" 3 "35-49 Conservative" 4 "50-64 Conservative" 5 "Not Conservative".
+freq PolTypeWtCO.
+
+RECODE  PoliticalTypeWt (3=1)(13=2)(23=3)(33=4)(else=5) INTO PolTypeWtLI.
+val labels PolTypeWtLI 1 "18-24 Liberal" 2 "25-34 Liberal" 3 "35-49 Liberal" 4 "50-64 Liberal" 5 "Not Liberal".
+freq PolTypeWtLI.
+
+
+Compute FaithActive = 2.
+If (ReligD = 1 AND ReligC < 3) FaithActive = 1.
+
+Var Label FaithActive "Religious Activity".
+Val Label FaithActive 1" Actively religious" 2 " Not actively religious" .
+
+If (Age4 = 1) FaithActiveWt = FaithActive.
+If (Age4 = 2) FaithActiveWt = FaithActive + 10.
+If (Age4 = 3) FaithActiveWt = FaithActive + 20.
+If (Age4 = 4) FaithActiveWt = FaithActive + 30.
+
+freq FaithActive FaithActiveWt.
+
+freq TITLE1 by FaithActive.
+
+Val Labels FaithActiveWt 1 "18-24 F"
+2 "18-24 NF"
+11 "25-34 F"
+12 "25-34 NF"
+21 "35-49 F"
+22 "35-49 NF"
+31 "50-64 F"
+32 "50-64 NF".
+
+RECODE FaithActiveWt (1=1)(11=2)(21=3)(31=4)(else=5) INTO FaithActiveWtB.
+val labels FaithActiveWtb 1 "18-24 F" 2 "25-34 F" 3 "35-49 F" 4 "50-64 F" 5 "Non faith".
+freq FaithActiveWtb.
+
+cross faithActiveWt by FaithActiveWtb FaithActive 
+
+freq FaithActiveWT 
+
+Recode GenreFanship7 (1=1)(2=2)(3=3)(4=4) Into GenreFanshipWt.
+If( GenreFanshipWt= $sysmis) GenreFanshipWt = 5. 
+Freq GenreFanshipWt.
+
+Freq GenreFanship7 
+
+cross GenreFanshipWt by GenreFanship7
+
+Delete Variables AwareMess.
+
+If (ShowAware = 1 AND TitleAssign = 1) AwareMess = 1.
+If (ShowAware = 2 AND TitleAssign = 1) AwareMess = 2.
+
+var label AwareMess "MESSIAH Pre-Aware".
+val label AwareMess
+1 "Aware"
+2 "Not Aware"
+.
+
+Freq TitleAssign AwareMess PostMess.1 PostMess.2 PostMess.3 PostMess.4.
+Freq AwareMess.
+
+
+Compute PostMess.1 = 0.
+Compute PostMess.2 = 0.
+Compute PostMess.3 = 0.
+Compute PostMess.4 = 0.
+If (PostInt = 1 AND TitleAssign = 1) PostMess.1 = 1.
+If (PostInt = 2 AND TitleAssign = 1) PostMess.2 = 1.
+If (PostInt < 3 AND TitleAssign = 1) PostMess.3 = 1.
+If (PostInt > 2 AND TitleAssign = 1) PostMess.4 = 1.
+Var Label PostMess.1 "Definitely Interested" PostMess.2 "Probably Interested" PostMess.3 "Top 2 Box Interest" PostMess.4 "Bottom 3 Box Interest" .
+
+MRSETS
+  /MDGROUP NAME=$PostMess LABEL='MESSIAH Post-Interest' CATEGORYLABELS = VARLABELS
+  VARIABLES=PostMess.1 PostMess.2 PostMess.3 PostMess.4 VALUE=1
+  /DISPLAY NAME=[$PostMess].
+
+Compute OverallM.2 = 1.
+If (Sample_Type = 1) OverallM.1 = 1.
+
+Var Label OverallM.2 "Overall, 18-64 (Including Oversample)"
+OverallM.1 "Overall, 18-64".
+
+
+MRSETS 
+  /MDGROUP NAME=$ReligAmt LABEL='General Religiosity' CATEGORYLABELS=VARLABELS VARIABLES=ReligAmt.1 ReligAmt.2 ReligAmt.3 ReligAmt.4 VALUE=1 
+  /DISPLAY NAME=[$ReligAmt].
+
+variable labels 
+ByReligA "High Religiosity by Religion"
+ByReligB "High Religiosity by Branch".
+exe.
+
+DELETE VARIABLES Respondent_Serial_SourceFile to DataCleaning_ReviewStatus4 Term_Point.1 to SSRID
+SurveyRateOE to PROG_WaitTimeoutExceeded_TIME OEFitPos OEFitNeg OEProdFitPos OEProdFitNeg 
+ReligA_Other ReligB_Other OEChoice OEAlt TitleGen_Other OEInt_A to OENotInt_A OETop Rac1_Other OEMessiah.
+
+SAVE OUTFILE='K:\Messiah\TitleTest\Data\Messiah Gen US.sav' 
+  /COMPRESSED.
+
+Freq Sample_Type.
+
+DATASET ACTIVATE DataSet1.
+* Define Multiple Response Sets.
+MRSETS
+  /MDGROUP NAME=$OverallM LABEL='Overall' CATEGORYLABELS=VARLABELS VARIABLES=OverallM.2 OverallM.1 
+    VALUE=1
+  /DISPLAY NAME=[$OverallM].
