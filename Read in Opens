@@ -1,0 +1,113 @@
+DEFINE myPath()
+!UnQuote("M:\Messiah\TitleTest\Coding\")
+!EndDefine.
+
+DEFINE OpenFile()
+!UnQuote("Coding_Messiah Title Test_")
+ !EndDefine.
+
+INSERT FILE="H:\Users Public\Kristin\Macros\Open Macros.sps".
+
+ReadIn Open=OEAlt DS=1.
+ * ReadIn Open=OETopofMind_AE DS=2.
+ * ReadIn Open=OETopofMind_Audience DS=3.
+ * ReadIn Open=OETopofMind_FX DS=4.
+
+Dataset Activate Data1.
+SortMerge N=1.
+
+Sort Cases by respondent_Serial(A).
+
+GET
+  FILE='K:\Messiah\TitleTest\Data\Messiah Gen US.sav'.
+DATASET NAME DataSet1 WINDOW=FRONT.
+
+Sort Cases by respondent_Serial(A).
+DATASET ACTIVATE DataSet1.
+MATCH FILES /FILE=*
+  /FILE='Data1'
+  /BY Respondent_Serial.
+EXECUTE.
+
+  ALTER TYPE OEAlt (F8.2).
+
+ * OETopofMind_1_AMC_2 OETopofMind_1_AampE_1
+OETopofMind_1_AampE_2 OETopofMind_1_Audience_1
+OETopofMind_1_Audience_2 OETopofMind_1_FX_1
+OETopofMind_1_FX_2 (F8.2).
+
+DELETE VARIABLES OEAlt .
+
+Value labels Value labels OEAlt_1 to OEAlt_3
+1 "jesus / christ"
+2 "religion / religious"
+3 "show / television / tv / series"
+4 "christmas / xmas"
+5 "drama"
+6 "god / lord"
+7 "advent season"
+8 "advent calendar"
+9 "rising up (physically)"
+10 "rising above an injustice / overcoming hardship / taking a stand"
+11 "rising ocean / rising sea / rising tide"
+12 "rising sun / sunrise"
+13 "resurrection / rising from the grave / rising from the dead / being brought back to life"
+14 "marathon / race / running"
+15 "sports"
+16 "adventure"
+17 "bible / biblical"
+18 "faith"
+19 "church"
+20 "arrival of a notable person"
+21 "new beginning"
+22 "action"
+23 "movie / film"
+24 "science fiction / sci fi / sci-fi / scifi"
+25 "christianity / christian"
+26 "catholic"
+27 "unusual / strange / weird / different"
+28 "never heard of it"
+29 "savior"
+30 "interesting"
+31 "person's name"
+32 "cool"
+33 "foreign"
+34 "india"
+35 "leader"
+36 "history / historical"
+37 "politics / political"
+38 "rising to fame"
+39 "martha"
+40 "woman / women / female"
+41 "exciting / thrilling"
+42 "inspiring / inspirational"
+43 "crime"
+44 "cult"
+45 "comedy / funny"
+46 "fantasy"
+47 "zombies"
+48 "middle east"
+49 "holy person"
+50 "performing miracles"
+51 "prophet"
+52 "positive / happy / upbeat / uplifting"
+53 "spiritual"
+54 "power / powerful"
+55 "easter"
+56 "jewish / judaism"
+57 "mystery /  mysterious"
+58 "cross"
+59 "man in a robe / old man"
+95 "don’t know / do not know / don’t remember / can't remember / not sure / unsure / no idea / no clue"
+96 "nothing / none"
+97 "General Positive"
+98 "General Negative"
+99 "Other"
+100 "Garbage Response / Bad Data"
+.
+Freq OEAlt_1 to OEAlt_3.
+alter type OEAlt_1 to OEAlt_3 (f8.2).
+
+
+
+* Enter MRSets code!
