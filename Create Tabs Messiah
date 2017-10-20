@@ -548,12 +548,12 @@ BoxListNum = 4
 
 			Amg[1] = "Probable Interest"
 			Var[1] = QRE[1] + "_TB{.., WhyNoInt7 [IsHidden = True]}" + " + " + QRE[1] + "_T2B{.., WhyNoInt7 [IsHidden = True]}"
-				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 0, "PostInt.ContainsAny({Probably_interested})")
+				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "PostInt.ContainsAny({Probably_interested})")
 '				Bottom 2 Box Interest
 			Ttl[1] = "Why Not Interested"
 			Amg[1] = "Bottom 2 Box Interest"
 			Var[1] = QRE[1] + "_TB{.., WhyNoInt7 [IsHidden = True]}" + " + " + QRE[1] + "_T2B{.., WhyNoInt7 [IsHidden = True]}"
-				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 0, "PostInt.ContainsAny({Probably_interested, Definitely_not_interested})")
+				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "PostInt.ContainsAny({Probably_not_interested, Definitely_not_interested})")
 				
 '				MESSIAH
 			QRE[1] = "WhyNoInt"
@@ -570,7 +570,7 @@ BoxListNum = 4
 			Ttl[1] = "Why Not Interested"
 			Amg[1] = "Bottom 2 Box Interest (MESSIAH)"
 			Var[1] = QRE[1] + "_TB{.., WhyNoInt7 [IsHidden = True]}" + " + " + QRE[1] + "_T2B{.., WhyNoInt7 [IsHidden = True]}"
-				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "TitleAssign.ContainsAny({MESSIAH}) AND PostInt.ContainsAny({Probably_interested})")
+				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "TitleAssign.ContainsAny({MESSIAH}) AND PostInt.ContainsAny({Probably_not_interested, Definitely_not_interested})")
 '				ADVENT
 			QRE[1] = "WhyNoInt"
 			Ttl[1] = "Why Not Interested"
@@ -616,9 +616,9 @@ BoxListNum = 4
 				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "TitleAssign.ContainsAny({MARANATHA}) AND PostInt.ContainsAny({Probably_interested})")
 '				Bottom 2 Box Interest
 			Ttl[1] = "Why Not Interested"
-			Amg[1] = "Bottom 2 Box Interest (MESSIAH)"
+			Amg[1] = "Bottom 2 Box Interest (MARANATHA)"
 			Var[1] = QRE[1] + "_TB{.., WhyNoInt7 [IsHidden = True]}" + " + " + QRE[1] + "_T2B{.., WhyNoInt7 [IsHidden = True]}"
-				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "TitleAssign.ContainsAny({MESSIAH}) AND PostInt.ContainsAny({Probably_not_interested, Definitely_not_interested})")
+				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[2], TableDoc, 1, "first", 1, "TitleAssign.ContainsAny({MARANATHA}) AND PostInt.ContainsAny({Probably_not_interested, Definitely_not_interested})")
 '				NO TITLE
 			QRE[1] = "WhyNoInt"
 			Ttl[1] = "Why Not Interested"
@@ -681,7 +681,7 @@ BoxListNum = 4
 				
 			QRE[1] = "ShowAware"
 			Ttl[1] = "Show Awareness"
-			Amg[1] = "All"
+			Amg[1] = "TitleAssign 1-4"
 			Var[1] = QRE[1]
 				MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[1], TableDoc, 0, "first", 0, "None")
 				
@@ -710,6 +710,8 @@ BoxListNum = 4
 				QRE[1] = OEList[i]
 				Ttl[1] = "Coded Open - " + OEList[i]
 				Var[1] = OEList[i] + "_Code"
+				Amg[1] = "Choice Different than TitleAssign"
+				Banner = "Choice 'Title Most Interested In'"
 					MakeTab(var[1], Banner, Amg[1], QRE[1], Ttl[1], TableDoc, 1, "first", 0, "None")
 			next
 	
