@@ -150,6 +150,10 @@ TitleGen categorical axis("{base(), .., Other [IsFixed = TRUE]}");
 PostGen categorical axis("{base(), .., Other [IsFixed = TRUE]}");
 AudAge categorical axis("{base(), .., All_ages [IsFixed = TRUE]}");
 
+OEAlt_Code categorical axis("{base('Choice Is Not Null'), .., don’t_know_do_not_know_don’t_remember_can_t_remember_not_sure_unsure_no_idea_no_clue [IsFixed = TRUE], nothing_none [IsFixed = TRUE], Other [IsFixed = TRUE], Garbage_Response_Bad_Data [IsFixed = TRUE]}");
+
+
+
 '-----------------------------------------------------
 'Grids - Manual
 '-----------------------------------------------------
